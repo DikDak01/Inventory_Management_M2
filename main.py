@@ -4,6 +4,12 @@ import sqlite3
 import sys
 import os
 
+#TODO: Fehlermeldung abfangen und Code optimieren
+#TODO: PDF Viewer einbinden
+#TODO: Materialinfos anzeigen (Rechnungen, Auftrag und und)
+#TODO: Reiter einbinden (Material, Verbrauchsmaterial, Projekte)
+#TODO: KI implementieren
+
 
 class Lagerverwaltung:
 
@@ -203,8 +209,15 @@ class MainWindow(QMainWindow):
                 self.update_table()
 
     def delete_data(self):
-        
-        pass
+        #TODO: löschen der gesamten Zeile ist noch fehlerhaft
+        selected_row = self.table_widget.currentRow()
+        if selected_row != -1:
+            artikel_id = int(self.table_widget.item(selected_row, 0).text())
+            reply = QMessageBox.question(self, 'Löschen', 'Möchten Sie den ausgewählten Artikel löschen?',
+                                         QMessageBox.Yes | QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                self.lagerverwaltung.delete_artikel(artikel_id)
+                self.update_table()
 
     def delete_selected_row(self):
         selected_rows = set(index.row() for index in self.table_widget.selectedIndexes())
