@@ -20,18 +20,7 @@ logging.basicConfig(
 
 
 class Lagerverwaltung:
-    """
-    Represents a warehouse management system connecting to a SQLite database.
 
-    This class provides methods to handle storage items in a warehouse by creating,
-    adding, updating, retrieving, and deleting records in the database. All records
-    are managed in a SQLite database table named `LAGERVERWALTUNG`.
-
-    :ivar con: The SQLite connection object for interactions with the database.
-    :type con: sqlite3.Connection
-    :ivar cur: The SQLite cursor object used for executing database operations.
-    :type cur: sqlite3.Cursor
-    """
     def __init__(self):
         self.con = sqlite3.connect("management.db")
         self.cur = self.con.cursor()
@@ -92,26 +81,7 @@ class Lagerverwaltung:
 
 
 class AddDataDialog(QDialog):
-    """
-    Dialog for adding data.
 
-    This class represents a modal dialog window allowing users to input
-    various types of data through a form. It contains input fields for
-    different attributes like date, description, type, amount, room,
-    and cabinet. Two buttons, 'Add' and 'Cancel,' are provided for
-    accepting or rejecting the dialog input respectively.
-
-    :ivar inputs: Dictionary holding labels as keys and corresponding
-        QLineEdit widgets as values. These widgets capture user input
-        for respective attributes.
-    :type inputs: dict[str, QLineEdit]
-    :ivar btn_add: QPushButton allowing the user to confirm and
-        accept the dialog input.
-    :type btn_add: QPushButton
-    :ivar btn_cancel: QPushButton allowing the user to cancel and
-        reject the dialog input.
-    :type btn_cancel: QPushButton
-    """
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowTitle("Daten hinzufügen")
@@ -143,21 +113,7 @@ class AddDataDialog(QDialog):
 
 
 class MainWindow(QMainWindow):
-    """
-    Represents the main window of the "Lagerverwaltung" application.
 
-    Provides the graphical user interface for managing inventory data with
-    functionalities such as adding, deleting, filtering, and exporting inventory
-    information. This window includes widgets for interaction and visualization,
-    and connects to the logical backend for data management.
-
-    :ivar search_field: Input field for searching/filtering table entries.
-    :type search_field: QLineEdit
-    :ivar table_widget: Table displaying inventory data.
-    :type table_widget: QTableWidget
-    :ivar lagerverwaltung: Backend logic for inventory management.
-    :type lagerverwaltung: Lagerverwaltung
-    """
     def __init__(self):
         super().__init__()
         self.search_field = None
